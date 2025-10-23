@@ -54,17 +54,21 @@ for(int hour = 0; hour < hourCounts.length; hour ++)
    }   
 }
 
-4. Read through the LogAnalyzer class and identify all the places where the hourCounts variable is 
+4a. Read through the LogAnalyzer class and identify all the places where the hourCounts variable is 
 used. At this stage, do not worry about what all the uses mean, as they will be explained in the 
 following sections. Note how often a pair of square brackets is used with the variable. 
 
 4b. The hourCounts variable is used 5 times throughout the logAnalyzer class, with only 2 including square brackets.
 
-5. What is wrong with the following array declarations? Correct them. 
-[]int counts; -> int[] counts;
-boolean[5000] occupied; -> boolean[] occupied = new boolean[5000];
+5a. What is wrong with the following array declarations? Correct them. 
+[]int counts; 
+boolean[5000] occupied; 
 
-6. Given the following variable declarations:
+5b.
+int[] counts;
+boolean[] occupied = new boolean[5000];
+
+6a. Given the following variable declarations:
 double[] readings;
 String[] urls;
 TicketMachine[] machines; 
@@ -77,7 +81,7 @@ TicketMachine objects.
 String[] urls = new String[90];
 TicketMachine[] machines = new TicketMachine[5];
 
-7. How many String objects are created by the following declaration? 
+7a. How many String objects are created by the following declaration? 
 String[] labels = new String[20]; 
 
 7b. 0 String objects. You just create the collection, not what is stored within.
@@ -87,22 +91,23 @@ for(i = 0; i < labels.length; i++)
    labels[i] = "CHICKEN POUTINE."
 }
 
-8. What is wrong with the following array creation? Correct it. 
+8a. What is wrong with the following array creation? Correct it. 
 double[] prices = new double(50);
 
 8b. double[] prices = new double[50];//the square brackets were wrongly replaced with parenthesis.
 
-9. Check to see what happens if the for loop’s condition is incorrectly written using the <= operator in 
+9a. Check to see what happens if the for loop’s condition is incorrectly written using the <= operator in 
 printHourlyCounts: 
 for(int hour = 0; hour <= hourCounts.length; hour++)
 
-An error titled "java.lang.ArrayIndexOutOfBoundsException: Index 24 out of bounds for length 24", becasue the indexes of
+9b.An error titled "java.lang.ArrayIndexOutOfBoundsException: Index 24 out of bounds for length 24", becasue the indexes of
 this array only goes up to 23, so the index 24 is none existent or as the error states "out of bounds". The length and 
 indexes differ due to their starting values being different by 1. So 0 for the indexes and the length starting at 1.
 
-10. Rewrite the body of printHourlyCounts so that the for loop is replaced by an equivalent while 
+10a. Rewrite the body of printHourlyCounts so that the for loop is replaced by an equivalent while 
 loop. Call the rewritten method to check that it prints the same results as before. 
 
+10b.
     /**
      * Print the hourly counts.
      * These should have been set with a prior
@@ -133,7 +138,7 @@ EXTRA FOREACH LOOP
         }
     }
 
-11. Correct all the errors in the following method. 
+11a. Correct all the errors in the following method. 
 /** * Print all the values in the marks array that are greater than mean.
  * @param marks An array of mark values.
  * @param mean The mean (average) mark. */ 
@@ -157,7 +162,7 @@ System.out.println(marks[index]);
 } 
 }
 
-12. Modify the LogAnalyzer class so that it has a constructor that can take the name of the log file to 
+12a. Modify the LogAnalyzer class so that it has a constructor that can take the name of the log file to 
 be analyzed. Have this constructor pass the file name to the constructor of the LogfileReader
 class. Use the LogfileCreator class to create your own file of random log entries, and analyze the 
 data. 
@@ -175,7 +180,7 @@ data.
         reader = new LogfileReader(filename);
     }
 
-13. Complete the numberOfAccesses method, below, to count the total number of accesses recorded in the 
+13a. Complete the numberOfAccesses method, below, to count the total number of accesses recorded in the 
 log file. Complete it by using a for loop to iterate over hourCounts: 
 /** * Return the number of accesses recorded in the log file. */ 
 public int numberOfAccesses() { 
@@ -196,7 +201,7 @@ return total;
         return total; 
     } 
 
-14. Add your numberOfAccesses method to the LogAnalyzer class and check that it gives the correct result.
+14a. Add your numberOfAccesses method to the LogAnalyzer class and check that it gives the correct result.
 Hint: You can simplify your checking by having the analyzer read log files containing just a few lines of 
 data. That way you will find it easier to determine whether or not your method gives the correct answer. 
 The LogfileReader class has a constructor with the following header, to read from a particular file: 
@@ -204,18 +209,26 @@ The LogfileReader class has a constructor with the following header, to read fro
  * @param filename The file of log data. */ 
  public LogfileReader(String filename) 
 
-14.Yes, it did work as intended!
+14b.Yes, it did work as intended!
 
-15. Add a method busiestHour to LogAnalyzer that returns the busiest hour. You can do this by looking 
+15a. Add a method busiestHour to LogAnalyzer that returns the busiest hour. You can do this by looking 
 through the hourCounts array to find the element with the biggest count. Hint: Do you need to check 
 every element to see if you have found the busiest hour? If so, use a for loop or a for-each loop. Which 
 one is better in this case? 
 
-16. Add a method quietestHour to LogAnalyzer that returns the number of the least busy hour. Note: This 
+15b.
+
+16a. Add a method quietestHour to LogAnalyzer that returns the number of the least busy hour. Note: This 
 sounds almost identical to the previous exercise, but there is a small trap for the unwary. Be sure to check
 your method with some data in which every hour has a non-zero count. 
 
-17. Which hour is returned by your busiestHour method if more than one hour has the biggest count? 
+16b.
 
-18. Add a method to LogAnalyzer that finds which two-hour period is the busiest. Return the value 
+17a. Which hour is returned by your busiestHour method if more than one hour has the biggest count? 
+
+17b.
+
+18a. Add a method to LogAnalyzer that finds which two-hour period is the busiest. Return the value 
 of the first hour of this period. 
+
+18b.
