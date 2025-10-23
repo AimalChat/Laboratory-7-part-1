@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Read web server data and analyse hourly access patterns.
@@ -22,7 +23,7 @@ public class LogAnalyzer
         // access counts.
         hourCounts = new int[HOURS_PER_DAY];
         // Create the reader to obtain the data.
-        reader = new LogfileReader();
+        reader = new LogfileReader("weblog(Day1).txt");
     }
 
     /**
@@ -48,6 +49,55 @@ public class LogAnalyzer
         for(int hour = 0; hour < hourCounts.length; hour++) {
             System.out.println(hour + ": " + hourCounts[hour]);
         }
+    }
+    
+    public String quietestHour()
+    {
+        ArrayList<Integer> quietestHours = new ArrayList<Integer>();
+        int quietest = hourCounts[0];
+        int quietestHour = 0;
+        String listOfHours = "";
+        for(int hour = 1; hour < hourCounts.length; hour++)
+        {
+            if(hourCounts[hour] < quietest)
+            {
+                quietest = hourCounts[hour];
+                quietestHour = hour;
+                quietestHours.add(hour);
+            }else
+            {
+                if(quietestHours.get(0) == quietest)
+                {
+                    quietestHours.add(hour);
+                }else
+                {
+                    quietestHours.clear();
+                    quietestHours.add(hour);
+                }
+            }
+            StringBuilder string = new StringBuilder();
+            for(int heure : quietestHours)
+                    {
+                        string.append(heure +", ");
+                        listOfHours = string.toString();
+                    }
+        }
+        return "Quietest hours of traffic is: " + listOfHours + " with "+ quietest + " visits.";
+    }
+    
+        public String busiestHour()
+    {
+        int busiest = hourCounts[0];
+        int busiestHour = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++)
+        {
+            if(hourCounts[hour] > busiest)
+            {
+                busiest = hourCounts[hour];
+                busiestHour = hour;
+            }
+        }
+        return "Busiest hour of traffic is: " + busiestHour + " with "+ busiest + " visits.";
     }
     
     /**
