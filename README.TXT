@@ -217,18 +217,81 @@ every element to see if you have found the busiest hour? If so, use a for loop o
 one is better in this case? 
 
 15b.
+        public String busiestHour()
+    {
+        int busiest = hourCounts[0];
+        int busiestHour = 0;
+        for(int hour = 1; hour < hourCounts.length; hour++)
+        {
+            if(hourCounts[hour] > busiest)
+            {
+                busiest = hourCounts[hour];
+                busiestHour = hour;
+            }
+        }
+        return "Busiest hour of traffic is: " + busiestHour + " with "+ busiest + " visits.";
+    }
 
 16a. Add a method quietestHour to LogAnalyzer that returns the number of the least busy hour. Note: This 
 sounds almost identical to the previous exercise, but there is a small trap for the unwary. Be sure to check
 your method with some data in which every hour has a non-zero count. 
 
 16b.
+public String quietestHours()
+    {
+        ArrayList<Integer> quietestHours = new ArrayList<Integer>();
+        int quietest = hourCounts[0];
+        String listOfHours = "";
+        StringBuilder string = new StringBuilder();
+        for(int hour = 0; hour < hourCounts.length; hour++)
+        {
+            if(hourCounts[hour] == quietest)
+            {
+                    quietestHours.add(hour);
+            }else
+            {
+                if(hourCounts[hour] < quietest)
+                {
+                    quietestHours.clear();
+                    quietest = hourCounts[hour];
+                    quietestHours.add(hour);
+                }else
+                {
+                    //move to the next hour without doing anything with the Arraylist.
+                }
+            }
+        }
+        for(int heure : quietestHours)
+        {
+            string.append(heure +", ");
+        }
+        string.deleteCharAt(string.length()-2);
+        listOfHours = string.toString();
+        return "Quietest hours of traffic is: " + listOfHours + "with "+ quietest + " visits.";
+    }
+
 
 17a. Which hour is returned by your busiestHour method if more than one hour has the biggest count? 
 
-17b.
+17b. It displays the latest one, or the one being processed at the latest time that fits
+the condition of being the highest/busiest hour. So, 1 = 50 && 23 = 50, it would display hour
+23 rather than both or 1.
 
-18a. Add a method to LogAnalyzer that finds which two-hour period is the busiest. Return the value 
-of the first hour of this period. 
+18a. Add a method to LogAnalyzer that finds which two-hour period is the busiest. Return 
+the value of the first hour of this period. 
 
 18b.
+public int busiestTwoHourPeriod()
+    {
+        int busiest = hourCounts[0] + hourCounts[1];
+        int busiestHour = 0;
+        for(int hour = 0; hour + 1 < hourCounts.length; hour++)
+        {
+            if(hourCounts[hour] + hourCounts[hour + 1] > busiest)
+            {
+                busiest = hourCounts[hour] + hourCounts[hour + 1];
+                busiestHour = hour;
+            }
+        }
+        return busiestHour;
+    }
